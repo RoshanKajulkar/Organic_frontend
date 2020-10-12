@@ -10,6 +10,7 @@ const StripeCheckout = (props) => {
   const calculateBill = () => {
     console.log(props.total);
     setBill(props.total);
+    console.log(bill);
   }
   useEffect(()=>{
     calculateBill();

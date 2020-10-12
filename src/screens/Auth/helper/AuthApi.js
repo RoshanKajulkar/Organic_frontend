@@ -1,13 +1,13 @@
 import { API } from "../../../backend";
 const axios = require("axios");
 
-export const signin = () => {
+export const signin = (email,password) => {
   return axios
     .post(
       `${API}/auth/signin`,
       {
-        password: "roshan",
-        email: "roshan@gmail.com",
+        password,
+        email
       },
       {
         headers: {
@@ -19,6 +19,30 @@ export const signin = () => {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      return {"err" : "Wrong password/email"};
+    });
+};
+
+export const signup = (firstname , lastname , email , password) => {
+  return axios
+    .post(
+      `${API}/auth/signup`,
+      {
+        firstname,
+        lastname,
+        password,
+        email
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      return {"err" : err};
     });
 };
